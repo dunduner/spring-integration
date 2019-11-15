@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://example" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://example" xmlns:intf="http://example" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://example" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="from" type="xsd:string"/>
+   <element name="sayTitleReturn" type="xsd:string"/>
+   <element name="Other" type="xsd:string"/>
+   <element name="sayBodyReturn" type="xsd:string"/>
+   <element name="title" type="xsd:string"/>
+   <element name="body" type="xsd:string"/>
+   <element name="sayAllReturn" type="xsd:string"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sayBodyRequest">
+
+      <wsdl:part element="impl:Other" name="Other"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayAllResponse">
+
+      <wsdl:part element="impl:sayAllReturn" name="sayAllReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayTitleResponse">
+
+      <wsdl:part element="impl:sayTitleReturn" name="sayTitleReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayTitleRequest">
+
+      <wsdl:part element="impl:from" name="from"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayBodyResponse">
+
+      <wsdl:part element="impl:sayBodyReturn" name="sayBodyReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayAllRequest">
+
+      <wsdl:part element="impl:title" name="title"/>
+
+      <wsdl:part element="impl:body" name="body"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="HelloWorld">
+
+      <wsdl:operation name="sayTitle" parameterOrder="from">
+
+         <wsdl:input message="impl:sayTitleRequest" name="sayTitleRequest"/>
+
+         <wsdl:output message="impl:sayTitleResponse" name="sayTitleResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayBody" parameterOrder="Other">
+
+         <wsdl:input message="impl:sayBodyRequest" name="sayBodyRequest"/>
+
+         <wsdl:output message="impl:sayBodyResponse" name="sayBodyResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayAll" parameterOrder="title body">
+
+         <wsdl:input message="impl:sayAllRequest" name="sayAllRequest"/>
+
+         <wsdl:output message="impl:sayAllResponse" name="sayAllResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="HelloWorldSoapBinding" type="impl:HelloWorld">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sayTitle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayTitleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayTitleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayBody">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayBodyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayBodyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayAll">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayAllRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayAllResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="HelloWorldService">
+
+      <wsdl:port binding="impl:HelloWorldSoapBinding" name="HelloWorld">
+
+         <wsdlsoap:address location="http://localhost:8080/services/HelloWorld"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
